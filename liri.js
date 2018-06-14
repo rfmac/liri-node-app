@@ -5,7 +5,7 @@ var sourceFile = require('./keys.js');
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
-var store = require('store');
+var fs = require('fs');
 
 
 var nodeArgv = process.argv;
@@ -75,7 +75,7 @@ function showTweets()
         console.log("-----------------------");
         
 
-        store.appendFile('log.txt', "@garymelasbigfan: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+        fs.appendFile('log.txt', "@garymelasbigfan: " + tweets[i].text + " Created At: " + date.substring(0, 19));
     
       }
     }
@@ -101,10 +101,10 @@ function spotifySong(song)
         console.log("Preview URL: " + songData.preview_url);
         console.log("Album: " + songData.album.name);
         
-        store.appendFile('log.txt', songData.artists[0].name);
-        store.appendFile('log.txt', songData.name);
-        store.appendFile('log.txt', songData.preview_url);
-        store.appendFile('log.txt', songData.album.name);
+        fs.appendFile('log.txt', songData.artists[0].name);
+        fs.appendFile('log.txt', songData.name);
+        fs.appendFile('log.txt', songData.preview_url);
+        fs.appendFile('log.txt', songData.album.name);
       }
     } else
     {
@@ -115,7 +115,7 @@ function spotifySong(song)
 
 function doThing()
 {
-  store.readFile('random.txt', "utf8", function(error, data)
+  fs.readFile('random.txt', "utf8", function(error, data)
   {
     var txt = data.split(',');
 
@@ -144,15 +144,15 @@ function omdbData(movie)
       console.log("Rotten Tomatoes URL: " + body.tomatoURL);
 
       
-      store.appendFile('log.txt', "Title: " + body.Title);
-      store.appendFile('log.txt', "Release Year: " + body.Year);
-      store.appendFile('log.txt', "IMdB Rating: " + body.imdbRating);
-      store.appendFile('log.txt', "Country: " + body.Country);
-      store.appendFile('log.txt', "Language: " + body.Language);
-      store.appendFile('log.txt', "Plot: " + body.Plot);
-      store.appendFile('log.txt', "Actors: " + body.Actors);
-      store.appendFile('log.txt', "Rotten Tomatoes Rating: " + body.tomatoRating);
-      store.appendFile('log.txt', "Rotten Tomatoes URL: " + body.tomatoURL);
+      fs.appendFile('log.txt', "Title: " + body.Title);
+      fs.appendFile('log.txt', "Release Year: " + body.Year);
+      fs.appendFile('log.txt', "IMdB Rating: " + body.imdbRating);
+      fs.appendFile('log.txt', "Country: " + body.Country);
+      fs.appendFile('log.txt', "Language: " + body.Language);
+      fs.appendFile('log.txt', "Plot: " + body.Plot);
+      fs.appendFile('log.txt', "Actors: " + body.Actors);
+      fs.appendFile('log.txt', "Rotten Tomatoes Rating: " + body.tomatoRating);
+      fs.appendFile('log.txt', "Rotten Tomatoes URL: " + body.tomatoURL);
 
     }
      else
@@ -166,8 +166,8 @@ function omdbData(movie)
       console.log("It's on Netflix!");
 
       
-      store.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-      store.appendFile('log.txt', "It's on Netflix!");
+      fs.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+      fs.appendFile('log.txt', "It's on Netflix!");
     }
   });
 
